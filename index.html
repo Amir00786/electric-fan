@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fan Control</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: #12121a;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      text-align: center;
+    }
+
+    .fan-box {
+      border: 6px solid #00f7ff;
+      border-radius: 50%;
+      padding: 20px;
+      display: inline-block;
+    }
+
+    .fan-box img {
+      width: 200px;
+      animation: spin linear infinite;
+      animation-duration: 0s;
+      transform-origin: center;
+    }
+
+    @keyframes spin {
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    .buttons {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+    }
+
+    button {
+      padding: 10px 20px;
+      margin: 5px;
+      border: none;
+      border-radius: 50%;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 16px;
+      width: 60px;
+      height: 60px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: background-color 0.3s;
+    }
+
+    .on {
+      background-color: limegreen;
+    }
+
+    .off {
+      background-color: red;
+      color: white;
+    }
+
+    .disabled {
+      background-color: #666 !important;
+      cursor: not-allowed;
+      opacity: 0.6;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="fan-box">
+      <img id="img" src="https://static.thenounproject.com/png/997867-200.png" alt="Fan" />
+    </div>
+    <div class="buttons">
+      <button class="on" onclick="myfunon()">ON</button>
+      <button class="off" onclick="myfunoff()">OFF</button>
+      <button id="btn1" onclick="myfun2()">1</button>
+      <button id="btn2" onclick="myfun3()">2</button>
+      <button id="btn3" onclick="myfun4()">3</button>
+    </div>
+  </div>
+
+  <script>
+    const a = document.getElementById("img");
+    let isOn = false;
+
+    const btn1 = document.getElementById("btn1");
+    const btn2 = document.getElementById("btn2");
+    const btn3 = document.getElementById("btn3");
+
+    function setSpeedButtons(enabled) {
+      const buttons = [btn1, btn2, btn3];
+      buttons.forEach(btn => {
+        if (enabled) {
+          btn.classList.remove("disabled");
+          btn.disabled = false;
+        } else {
+          btn.classList.add("disabled");
+          btn.disabled = true;
+        }
+      });
+    }
+
+    function myfunon() {
+      isOn = true;
+      a.style.animationDuration = "3s";
+      setSpeedButtons(true);
+    }
+
+    function myfunoff() {
+      isOn = false;
+      a.style.animationDuration = "0s";
+      setSpeedButtons(false);
+    }
+
+    function myfun2() {
+      if (isOn) a.style.animationDuration = "1s";
+    }
+
+    function myfun3() {
+      if (isOn) a.style.animationDuration = "0.5s";
+    }
+
+    function myfun4() {
+      if (isOn) a.style.animationDuration = "0.1s";
+    }
+    
+    window.onload = () => {
+      setSpeedButtons(false);
+    };
+  </script>
+</body>
+
+</html>
