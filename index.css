@@ -1,0 +1,72 @@
+body {
+    margin: 0;
+    background-color: #12121a;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+
+  .container {
+    text-align: center;
+  }
+
+  .fan-box {
+    border: 6px solid #00f7ff;
+    border-radius: 50%;
+    padding: 20px;
+    display: inline-block;
+  }
+
+  .fan-box img {
+    width: 200px;
+    animation: spin linear infinite;
+    animation-duration: 0s;
+    transform-origin: center;
+  }
+
+  @keyframes spin {
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  .buttons {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+  }
+
+  button {
+    padding: 10px 20px;
+    margin: 5px;
+    border: none;
+    border-radius: 50%;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 16px;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s;
+  }
+
+  .on {
+    background-color: limegreen;
+  }
+
+  .off {
+    background-color: red;
+    color: white;
+  }
+
+  .disabled {
+    background-color: #666 !important;
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
